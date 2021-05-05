@@ -20,16 +20,63 @@
     <main>
         <div class="container-fluid"> 
             <div class="row">
-              <div class="col-4"> <!--Side Nav for Search Bar-->
+              <div class="col-3"> <!--Side Nav for Search Bar-->
                <h3 class="topMargin">  Search for a city: </h3>
                <div class="input-group mb-3">
                 <input type="text" placeholder="City Name" class="form-control" id="searchCity">
             </div>
                 <div class="d-grid gap-2">
                     <button class="btn" id="searchBtn" type="button">Search</button>
+              </div>  
+              <div>
+                    <ul id="city-results" class="list-group mt-4"></ul> <!--List of prior searched cities-->
+              </div>        
+            </div>
+              <div class="col-8">
+                  <div id="mainDisplay" class='rounded'> <!-- Main results -->
+                    <div class="leftMargin">
+                        <h3 class="topMargin"><span id="city">City Name </span><span id="date">(Date)</span></h3>
+                        <p id="icon"></p>
+                        <p id="temp">Temp</p>
+                        <p id="wind"></p>
+                        <p id="humidity"></p>
+                    </div>    
+                  </div>
+                <h4 class="topMargin">Five Day Forecast:</h4>
+                <div class="row d-flex justify-content-between fiveDayContainer"> <!-- Five day forecast -->
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Date</h5>
+                            <img src="" alt="icon" id="icon">
+                            <p class="card-text">Some quick example text.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Card Two</h5>
+                            <p class="card-text">Some quick example text.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Card Three</h5>
+                            <p class="card-text">Some quick example text.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Card Four</h5>
+                            <p class="card-text">Some quick example text.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Card Five</h5>
+                            <p class="card-text">Some quick example text.</p>
+                        </div>
+                    </div>
                 </div>
-                <ul id="city-results" class="list-group mt-4"></ul>  <!--List of prior searched cities-->      
-
+        <div>
     </main>
      
     
