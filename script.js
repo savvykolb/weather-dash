@@ -20,15 +20,12 @@ var currentDate = moment().format('L');
 $("#current-date").text("(" + currentDate + ")");
 
 //This makes sure the page checks history upon page loading
-//I know I will need this at the end - based on reading
 initalizeHistory();
 showClear();
 
-//I think this can be in an if then statement to combine both functions
-
 //user input taken and added to search history when pressing ENTER
 $(document).on("submit", function () {
-    event.preventDefault();
+    e.preventDefault();
 
     var searchValue = searchCityInput.val().trim();
     currentWeather(searchValue)
@@ -99,7 +96,6 @@ console.log('searchValue:', searchValue)
         var forecastURL = "https://api.openweathermap.org/data/2.5/forecast?&units=imperial&appid=" + APIkey + "&lat=" + lat + "&lon=" + lon;
 
         // AJAX call for 5-day forecast
-        // I know there is a shorter way to complete this, but I was able to do this round one. If I have time, I will try to shorten.
         $.ajax({
             url: forecastURL,
             method: "GET"
@@ -112,7 +108,7 @@ console.log('searchValue:', searchValue)
                 var forecastDateString = moment(response.list[i].dt_txt).format("L");
                 console.log('forecastDateString:', forecastDateString)
                 
-                //references html page
+                //html
                 var forecastCardBody = $("<div class='card-body card'>");
                 var forecastDate = $("<h5 class='card-title'>");
                 var forecastIcon = $("<img>");
@@ -192,3 +188,4 @@ function showClear() {
 }
 
 // To do: Change UV color
+// this is where the uv populates: UVindex.text(response.value)
