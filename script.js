@@ -21,8 +21,8 @@ $("#current-date").text("(" + currentDate + ")");
 
 //This makes sure the page checks history upon page loading
 //I know I will need this at the end - based on reading
-// initalizeHistory();
-// showClear();
+initalizeHistory();
+showClear();
 
 //I think this can be in an if then statement to combine both functions
 
@@ -63,6 +63,7 @@ searchHistoryList.on("click", "li.city-btn", function () {
 
 // API request based on user input
 function currentWeather(searchValue) {
+console.log('searchValue:', searchValue)
 
     var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + searchValue + "&units=imperial&appid=" + APIkey;
 
@@ -139,9 +140,55 @@ function currentWeather(searchValue) {
         })
     });
 };
+//This function puts search history on the page.
+function searchHistory(searchValue) {
+    if (searchValue) {
+        if (cityList.indexOf(searchValue) === -1) {
+            cityList.push(searchValue);
+            listArray();
+            clearHistoryBtn.removeClass("hide");
+            weatherContent.removeClass("hide");
+        } else {
+            var removeIndex = cityList.indexOf(searchValue);
+            cityList.splice(removeIndex, 1);
+            cityList.push(searchValue);
+            listArray();
+            clearHistoryBtn.removeClass("hide");
+            weatherContent.removeClass("hide");
+        }
+    }
+}
+// List ALL the searched cities the user inputs and stores in local storage.
+function listArray() {
+    searchHistoryList.empty();
+    cityList.forEach(function(city){
+        var searchHistoryItem = $('<li class="list-group-item city-btn">');
+        searchHistoryItem.attr("data-value", city);
+        searchHistoryItem.text(city);
+        searchHistoryList.prepend(searchHistoryItem);
+    });
+    localStorage.setItem("cities", JSON.stringify(cityList));
+}
 
-//I have it pulling data, but it is not saving search history. 
+// This function keeps the users history on page reload. 
+function initalizeHistory() {
+    if (localStorage.getItem("cities")) {
+        cityList = JSON.parse(localStorage.getItem("cities"));
+        var lastIndex = cityList.length - 1;
+        console.log('cityList:', cityList)
+        
+        listArray();
+        if (cityList.length !== 0) {
+            currentWeather(cityList[lastIndex]);
+            weatherContent.removeClass("hide");
+        }
+    }
+}
+//clear history
+function showClear() {
+    if (searchHistoryList.text() !== "") {
+        clearHistoryBtn.removeClass("hide");
+    }
+}
+
 // To do: Change UV color
-//          Get search history to save
-//           Make sure my search history function above works with clicking and displaying data
-//             Try to shorten and make dry script - VERY long right now
