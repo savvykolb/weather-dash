@@ -10,7 +10,7 @@
 
 An application called Weather Dashboard utilizes a third-party API to retrieve weather data for cities. 
 
-![The home page shows an empty weather dashboard.](Assets/Img.1.png)
+![The home page shows an empty weather dashboard.](Assets/Img.3.png)
 
 ## Questions
 
